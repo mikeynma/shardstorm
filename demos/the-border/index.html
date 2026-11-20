@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>The border does the showing off - Shardstorm</title>
+<meta name="description" content="The playfield is stark black, so the border has the colour: a ticker scrolling across the top, bars along the bottom that move to the music, a flash while you thrust, and between waves a set piece - a checkerboard, side stripes or a cloudy sea.">
+<meta property="og:title" content="The border does the showing off - Shardstorm">
+<meta property="og:description" content="The playfield is stark black, so the border has the colour: a ticker scrolling across the top, bars along the bottom that move to the music, a flash while you thrust, and between waves a set piece - a checkerboard, side stripes or a cloudy sea.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mikeynma.github.io/shardstorm/demos/the-border/">
+<meta property="og:image" content="https://mikeynma.github.io/shardstorm/shots/the-border/checkerboard.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="704">
+<meta property="og:image:height" content="576">
+<meta property="og:image:alt" content="A blue and cyan checkerboard filling the border round a black playfield with WAVE 2 in big yellow letters">
+<link rel="canonical" href="https://mikeynma.github.io/shardstorm/demos/the-border/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mikeynma.github.io/shardstorm/shots/the-border/checkerboard.png">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="../../favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="preload" href="../../fonts/geist-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../site.css">
+</head>
+<body>
+<div class="tape" aria-hidden="true"></div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="../../" aria-label="Shardstorm, the front page"><img src="../../icon.png" width="32" height="32" alt=""><span>Shardstorm</span></a>
+    <nav aria-label="Sections"><a href="#how">How it works</a><a href="#screens">Screens</a><a href="#download">Download</a><a href="../../#demos">The game</a></nav>
+  </div>
+</header>
+
+<main>
+<section class="hero wrap">
+  <div class="hero-text">
+    <p class="badges"><span class="badge m48K">48K</span><span class="badge m128K">128K</span><span class="date">20 November 2026</span></p>
+    <h1 class="title">The border does the showing off</h1>
+    <p class="lead">The playfield is stark black, so the border has the colour: a ticker scrolling across the top, bars along the bottom that move to the music, a flash while you thrust, and between waves a set piece - a checkerboard, side stripes or a cloudy sea.</p>
+    <p>A Spectrum's border is just one colour at a time. Change it at the right moment, though, and the TV draws the new colour from exactly that point on its way down the screen. Do that a few hundred times a frame, each change at an exact moment, and the border can carry pictures.</p>
+<p>Shardstorm does that while the game runs: the top 24 lines of border hold a ticker with the wave, the high score to beat and messages such as NEW HIGH SCORE! and LAST LIFE!; on a 128K the bottom 24 hold bars that move to the tune; and between waves the whole border puts on a set piece for three seconds.</p>
+    <div class="actions"><a class="btn" href="../../files/shardstorm-128k.tzx" download>Download the 128K .tzx <small>42 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-128k.tap" download>Download the 128K .tap <small>42 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-128k-instant.tap" download>Download the 128K instant .tap <small>32 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-48k.tzx" download>Download the 48K .tzx <small>36 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-48k.tap" download>Download the 48K .tap <small>36 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-48k-instant.tap" download>Download the 48K instant .tap <small>28 KB</small></a></div>
+  </div>
+  <figure class="hero-shot">
+    <a class="shot" href="../../shots/the-border/checkerboard.png" data-caption="Between waves: a checkerboard across the whole border, WAVE 2 in the middle."><img src="../../shots/the-border/checkerboard.png" width="704" height="576" alt="A blue and cyan checkerboard filling the border round a black playfield with WAVE 2 in big yellow letters"></a>
+    <figcaption>Between waves: a checkerboard across the whole border, WAVE 2 in the middle.</figcaption>
+  </figure>
+</section>
+
+<section id="how" class="wrap">
+  <p class="eyebrow">How it works</p>
+  <div class="tech">
+    <div class="tech-text">
+      <h2>Timed to the T-state</h2>
+      <p>Every colour change is timed to the processor's cycle, and the 48K and the 128K run at different speeds, so the border code is built twice, once for each, and the game loads the right one. The game's drawing has to fit round it, which is why the 48K, with only one screen, plays the lighter game.</p>
+      <h2>On a +2A or +3</h2>
+      <p>The bottom bars find the TV's beam by watching the bus for what the screen is fetching, which a +2A or +3 cannot do. Those two play without the bars and keep everything else.</p>
+      <h2>Where it came from</h2>
+      <p>The effects were tried out first in <a href="https://mikeynma.github.io/borders-and-loaders/demos/border-lab/">Border Lab</a> on Borders &amp; Loaders, the site about the border and tape tricks behind this game.</p>
+      <h2>How it was checked</h2>
+      <p>The build logs every write to the screen with its exact moment, and fails if one lands while the TV is drawing the playfield, or if a frame runs past its time on any of the three machines. It checks the ticker both with the interrupt line held as a real Spectrum holds it and without, as some emulators do.</p>
+    </div>
+    <aside class="card numbers">
+      <h3>The numbers</h3>
+      <dl><dt>Top border</dt><dd>the ticker, 20 lines</dd><dt>Bottom border</dt><dd>bars to the music (not on a +2A or +3)</dd><dt>Between waves</dt><dd>three set pieces in turn, 3 s each</dd></dl>
+    </aside>
+  </div>
+</section>
+
+<section id="screens" class="wrap">
+  <p class="eyebrow">Screens</p>
+  <h2>As our emulator draws it</h2>
+  <p class="sub">Full frames, border and all. Click a picture to see it bigger.</p>
+  <div class="gallery">
+    <a class="shot" href="../../shots/the-border/checkerboard.png" data-caption="Between waves: a checkerboard across the whole border, WAVE 2 in the middle."><img src="../../shots/the-border/checkerboard.png" width="704" height="576" loading="lazy" alt="A blue and cyan checkerboard filling the border round a black playfield with WAVE 2 in big yellow letters"></a>
+    <a class="shot" href="../../shots/the-border/stripes.png" data-caption="Another set piece: stripes running down the sides."><img src="../../shots/the-border/stripes.png" width="704" height="576" loading="lazy" alt="Red, yellow, blue and cyan stripes down both side borders, WAVE 2 in the middle of the playfield"></a>
+    <a class="shot" href="../../shots/the-border/clouds.png" data-caption="And a third: clouds over a sky, a horizon and the sea."><img src="../../shots/the-border/clouds.png" width="704" height="576" loading="lazy" alt="A blue sky with grey clouds in the top border, a cyan sea below the horizon, WAVE 2 on the playfield"></a>
+    <a class="shot" href="../../shots/the-border/ticker.png" data-caption="The ticker in the top border: big letters made of border colour, scrolling as you play."><img src="../../shots/the-border/ticker.png" width="704" height="576" loading="lazy" alt="Big blocky white and cyan letters spelling WAVE across the top border above the playfield"></a>
+  </div>
+</section>
+
+<section id="download" class="wrap">
+  <div class="card download">
+    <div>
+      <p class="eyebrow">Download</p>
+      <h2>Load it yourself</h2>
+      <p>For the 48K and the 128K. A tape for each machine. The <code>.tzx</code> has it all: the jingle, the developing screen and the game in the box while it loads, and needs an emulator that plays tapes in real time. The <code>.tap</code> is the same without the jingle. The <code>-instant.tap</code> is the plain tape, for a DivMMC or instant loading.</p>
+      <p class="meta"><code>shardstorm-128k.tzx</code>, 42 KB, built 20 November 2026<br><code>shardstorm-128k.tap</code>, 42 KB, built 20 November 2026<br><code>shardstorm-128k-instant.tap</code>, 32 KB, built 20 November 2026<br><code>shardstorm-48k.tzx</code>, 36 KB, built 20 November 2026<br><code>shardstorm-48k.tap</code>, 36 KB, built 20 November 2026<br><code>shardstorm-48k-instant.tap</code>, 28 KB, built 20 November 2026</p>
+      <div class="actions"><a class="btn" href="../../files/shardstorm-128k.tzx" download>Download the 128K .tzx <small>42 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-128k.tap" download>Download the 128K .tap <small>42 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-128k-instant.tap" download>Download the 128K instant .tap <small>32 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-48k.tzx" download>Download the 48K .tzx <small>36 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-48k.tap" download>Download the 48K .tap <small>36 KB</small></a><a class="btn btn-ghost" href="../../files/shardstorm-48k-instant.tap" download>Download the 48K instant .tap <small>28 KB</small></a></div>
+    </div>
+    <ol class="steps">
+      <li><b>Pick your machine's tape.</b> The 48K tape for a 48K; the 128K tape for a 128K, +2, +2A or +3 (pick <b>Tape Loader</b>, or <b>Loader</b> on a +2A or +3). Each says so if you load it on the other. The loader in the <code>.tzx</code> and <code>.tap</code> has been checked against the 48K's and the 128K's timing; on a +2A or +3, whose timing differs a little, the <code>-instant.tap</code> is the safe one.</li>
+      <li><b>The <code>.tzx</code></b> is the whole thing: a jingle on the tape, the loading screen developing, and a small game to play in its box while Shardstorm loads - with the tune on a 128K. Its own loader reads the tape, so the emulator must play it in real time, as ZX Spin, Retro Virtual Machine and Fuse do: switch off instant and fast loading. Press fire when it says LOADED.</li>
+      <li><b>The <code>.tap</code></b> is the same without the jingle, for an emulator that only takes <code>.tap</code> files.</li>
+      <li><b>The <code>-instant.tap</code></b> is the plain tape, every block for the ROM: for a DivMMC, or an emulator's instant loading, which skip any loader of its own.</li>
+      <li><b>On a real Spectrum:</b> play the <code>.tzx</code> into the EAR socket from a TZX player.</li>
+    </ol>
+  </div>
+</section>
+
+<nav class="wrap pager" aria-label="Other demos">
+  <a href="../the-tape/">&larr; The tape: play while it loads</a>
+  <a href="../the-game/">The game: rocks, a saucer, three lives &rarr;</a>
+</nav>
+</main>
+
+<footer class="wrap foot">
+  <img src="../../icon.png" width="24" height="24" alt="">
+  <div>
+    <p>Shardstorm is an original game for the 48K and 128K ZX Spectrum, written in Z80 assembly with our own assembler and emulator. Made in the UK, by the maker of <a href="https://mikeynma.github.io/">games for the ZX Spectrum Next</a>, <a href="https://mikeynma.github.io/borders-and-loaders/">Borders &amp; Loaders</a> (how its tapes and border work) and the <a href="https://mikeynma.github.io/spectrum-sound-lab/">Spectrum Sound Lab</a>.</p>
+    <p class="small">The game, its pictures and music are original and our own. Text in Geist, under the SIL Open Font License.</p>
+  </div>
+</footer>
+<dialog class="lightbox" aria-label="Screenshot">
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button class="lb-btn lb-prev" type="button" aria-label="Previous picture">&lsaquo;</button>
+  <button class="lb-btn lb-next" type="button" aria-label="Next picture">&rsaquo;</button>
+  <button class="lb-btn lb-close" type="button" autofocus aria-label="Close">&times;</button>
+</dialog>
+<script src="../../site.js"></script>
+</body>
+</html>
