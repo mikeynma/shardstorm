@@ -106,6 +106,12 @@ main > section { padding: 76px 0 0; }
 .tech-text p, .tech-text li { color: #dcdcea; }
 .tech-text ul { padding-left: 20px; }
 .tech-text b { color: var(--heading); }
+/* hints with their answers hidden until asked (a game's "How to play") */
+.hint { border: 1px solid rgba(255,255,255,0.12); border-radius: 10px; padding: 10px 14px; margin: 10px 0; background: rgba(255,255,255,0.03); }
+.hint summary { cursor: pointer; color: var(--heading); font-weight: 600; }
+.hint summary small { color: #9a9ab0; font-weight: 400; }
+.hint[open] summary small { display: none; }
+.hint p { margin: 8px 0 0; }
 .numbers { position: sticky; top: 90px; }
 .numbers h3 { color: var(--yellow); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.85rem; margin-bottom: 12px; }
 .numbers dl { margin: 0; display: grid; gap: 10px; }
